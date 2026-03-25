@@ -1,0 +1,27 @@
+{
+  "name": "akil-intelligence",
+  "description": "NYC civic data intelligence — 92 tools, 57 verified government data sources, 127M+ records. Grants, budgets, contracts, lobbying, campaign finance, building violations, property records, and more.",
+  "version": "2.4.0",
+  "transport": {
+    "type": "http",
+    "url": "https://mcp.askakil.ai/mcp"
+  },
+  "repository": {
+    "url": "https://github.com/AkilVentures/akil-mcp",
+    "source": "github"
+  },
+  "author": {
+    "name": "Akil Ventures, Inc.",
+    "url": "https://akilventures.com"
+  },
+  "links": {
+    "homepage": "https://askakil.ai",
+    "documentation": "https://askakil.ai/mcp/docs",
+    "pricing": "https://askakil.ai/pricing",
+    "privacy": "https://askakil.ai/privacy"
+  },
+  "categories": ["data-platforms", "government", "civic-data"],
+  "tools": 92,
+  "sources": 57,
+  "records": "127M+"
+}

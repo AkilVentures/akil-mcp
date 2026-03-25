@@ -1,0 +1,26 @@
+{
+  "name": "akil-mcp",
+  "version": "2.4.0",
+  "description": "NYC civic data intelligence MCP server — 92 tools, 57 verified government data sources, 127M+ records",
+  "mcpName": "io.github.akilventures/akil-mcp",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "nyc",
+    "civic-data",
+    "government",
+    "grants",
+    "lobbying",
+    "campaign-finance",
+    "building-violations",
+    "property-records",
+    "nonprofit"
+  ],
+  "homepage": "https://askakil.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AkilVentures/akil-mcp"
+  },
+  "author": "Akil Ventures, Inc. <jiewhoon@gmail.com>",
+  "license": "MIT"
+}
