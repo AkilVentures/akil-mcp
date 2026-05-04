@@ -19,7 +19,7 @@
   "homepage": "https://askakil.ai/mcp",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AkilVentures/akil-mcp"
+    "url": "git+https://github.com/AkilVentures/akil-mcp.git"
   },
   "author": "Akil Ventures, Inc. <hello@akilventures.com>",
   "license": "MIT",
