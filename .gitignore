@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+*.tgz
+
+# Local presentation/export scratch files, not part of the public MCP repo.
+Akil_NYC_Intelligence_MCP_Deck.*
+generate-deck*
+logo.svg
+test test.txt

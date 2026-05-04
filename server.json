@@ -1,7 +1,8 @@
 {
-  "name": "akil-intelligence",
-  "description": "NYC civic data intelligence — 92 tools, 57 verified government data sources, 127M+ records. Grants, budgets, contracts, lobbying, campaign finance, building violations, property records, and more.",
-  "version": "2.4.0",
+  "name": "akil-mcp",
+  "displayName": "Akil MCP - New York City Edition",
+  "description": "NYC public records for AI agents. Hosted MCP access to source-backed civic data organized around addresses, BBLs, organizations, agencies, districts, licenses, and time windows.",
+  "version": "2.5.0",
   "transport": {
     "type": "http",
     "url": "https://mcp.askakil.ai/mcp"
@@ -15,13 +16,23 @@
     "url": "https://akilventures.com"
   },
   "links": {
-    "homepage": "https://askakil.ai",
+    "homepage": "https://askakil.ai/mcp",
     "documentation": "https://askakil.ai/mcp/docs",
     "pricing": "https://askakil.ai/pricing",
     "privacy": "https://askakil.ai/privacy"
   },
   "categories": ["data-platforms", "government", "civic-data"],
-  "tools": 92,
-  "sources": 57,
-  "records": "127M+"
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "nyc",
+    "civic-data",
+    "public-records",
+    "government",
+    "property-records",
+    "campaign-finance",
+    "lobbying",
+    "procurement",
+    "nonprofit"
+  ]
 }

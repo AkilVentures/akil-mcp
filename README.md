@@ -1,179 +1,103 @@
-# Akil Intelligence — NYC Civic Data MCP Server
+# Akil MCP - New York City Edition
 
-<p align="center">
-  <strong>92 tools · 57 verified data sources · 127M+ records</strong><br>
-  Real New York City government data for AI agents and applications.
-</p>
+### NYC public records for AI agents.
 
-<p align="center">
-  <a href="https://askakil.ai">Website</a> ·
-  <a href="https://askakil.ai/mcp/docs">Tool Documentation</a> ·
-  <a href="https://askakil.ai/pricing">Pricing</a> ·
-  <a href="https://askakil.ai/privacy">Privacy</a>
-</p>
+Akil MCP connects Claude, ChatGPT, Codex, and custom agents to a hosted civic
+data layer built around real workflows, reusable identifiers, and source-backed
+public records.
 
----
+The product is the hosted MCP server. This repository is the public connection
+home for developers and evaluators.
 
-## What is Akil Intelligence?
+## Connect
 
-Akil Intelligence is the most comprehensive MCP server for New York City public data. Connect any MCP-compatible AI client and get verified, cross-referenced answers from 57 government data sources — including council funding, city contracts, lobbying records, campaign finance, building violations, property records, nonprofit filings, and more.
+There is nothing to install for normal use.
 
-**Every answer is verified.** No guessing, no hallucination. Real numbers from real government databases, updated weekly.
+**MCP endpoint:** `https://mcp.askakil.ai/mcp`
 
-## Quick Connect
+| Client | How to connect |
+|--------|----------------|
+| Claude | Add Akil as a custom connector, paste the MCP URL, and sign in when prompted. |
+| ChatGPT | Use connectors where available, add the MCP URL, and complete the Akil authorization flow. |
+| Codex | Register Akil as a streamable HTTP MCP server. Developer access can send an API key as a bearer token. |
+| Custom agents | Use OAuth for user-authorized sessions or API keys for backend jobs and partner workflows. |
 
-**Endpoint:** `https://mcp.askakil.ai/mcp`
-**Transport:** Streamable HTTP
+Full setup and docs:
 
-### Claude Desktop
+- [MCP overview](https://askakil.ai/mcp)
+- [Developer docs](https://askakil.ai/mcp/docs)
 
-Add to your `claude_desktop_config.json`:
+## What agents can do
 
-```json
-{
-  "mcpServers": {
-    "akil-intelligence": {
-      "url": "https://mcp.askakil.ai/mcp"
-    }
-  }
-}
+Akil is organized around civic workflows rather than a single dataset.
+
+- Evaluate a business location: permits, licenses, inspections, location context
+- Research a property or building: ownership, deeds, permits, violations, sales, tax records
+- Follow public money: awards, payments, contracts, agency budgets
+- Understand influence: lobbying, campaign finance, legislation, votes, hearings
+- Check an organization: nonprofit registries, audits, funding history, compliance records
+- Ask about a place: address, BBL, district, neighborhood, radius, polygon, or corridor
+
+## Why this exists
+
+A general model can reason. Akil gives it records to reason from.
+
+The useful part is not the number of tools. It is that fragmented public
+records come back with stable identifiers, source context, and next steps an
+assistant can actually follow.
+
+## Anchor-first design
+
+Akil responses are designed to keep agents oriented around durable civic
+identifiers:
+
+- `BBL` for tax lots, buildings, ownership, permits, sales, tax records, and violations
+- `EIN` for nonprofits, audits, awards, filings, and organization checks
+- `Agency` for budgets, contracts, payments, rules, hearings, and payroll context
+- `District` or other boundaries for place-based questions
+- `License` and application identifiers for regulated businesses
+- `Time window` for bounded, usable queries
+
+These anchors let an assistant move from one public record system to another
+without losing the subject of the question.
+
+## Example prompts
+
+```text
+I am looking at a storefront lease. What public records should I check before signing?
 ```
 
-### Claude Code
-
-```bash
-claude mcp add akil-intelligence --transport http https://mcp.askakil.ai/mcp
+```text
+Who owns this building, and are there recent permits or violations tied to the tax lot?
 ```
 
-### Cursor
-
-Add to `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "akil-intelligence": {
-      "url": "https://mcp.askakil.ai/mcp"
-    }
-  }
-}
+```text
+Show public funding, contracts, and payments tied to this organization.
 ```
 
-### Any MCP Client
+```text
+What changed in this council district over the last year?
+```
 
-Point your client to `https://mcp.askakil.ai/mcp` using Streamable HTTP transport.
+```text
+Is this restaurant, liquor, tobacco, cannabis, or sidewalk-cafe location worth checking more closely?
+```
 
-## What's Inside
+## Public surfaces
 
-92 intelligence tools organized into 5 pillars:
-
-### 💰 Money (40 tools)
-Trace every dollar through NYC government — from budget allocation to vendor payment.
-
-- Grants, contracts, and procurement opportunities
-- Agency budgets (adopted, modified, committed)
-- Council discretionary funding by member and district
-- Mayor, Speaker, Borough President, Comptroller allocations
-- Vendor payments and spending trends
-- Foundation giving profiles and recipients
-- Nonprofit IRS 990 financials
-
-### 🏢 Organizations (9 tools)
-Complete dossier on any NYC organization — funding, audits, compliance, certifications.
-
-- Cross-source org lookup (funding + audits + certifications + licenses)
-- Federal audit history (material weaknesses, questioned costs)
-- M/WBE certification status
-- Nonprofit financial trends (multi-year)
-- Business license verification
-
-### 👤 People (10 tools)
-Track political influence — campaign finance, lobbying, payroll, official contacts.
-
-- Campaign contributions and expenditures (NYC CFB, 2001-2025)
-- Lobbying registrations (NYC + NYS)
-- Who lobbies which agency or council member
-- Citywide payroll records (all agencies)
-- Official directory (Green Book)
-- Council member profiles (funding + legislation)
-
-### 📍 Places (21 tools)
-Complete neighborhood intelligence — violations, complaints, schools, housing, property.
-
-- HPD housing violations and complaints
-- DOB building permits and violations
-- Property records (858K tax lots, PLUTO)
-- School profiles and demographics
-- 311 complaints and crime data
-- Affordable housing developments
-- Restaurant inspections
-- Environmental data (air quality)
-- Social services and shelter census
-
-### ⚖️ Rules (7 tools)
-Track legislation, zoning, regulations, and public hearings.
-
-- Council bills and resolutions (1997-present)
-- Land use and zoning (ULURP/ZAP)
-- Agency rulemaking
-- Public hearings and meetings
-
-## Example Queries
-
-Once connected, ask your AI client:
-
-| Query | What you get |
-|-------|-------------|
-| "How much government funding has the YMCA received from NYC?" | Cross-referenced awards from 6+ agencies with exact dollar amounts |
-| "Who are the top recipients of council discretionary funding?" | Ranked list with amounts, agencies, and fiscal years |
-| "Who lobbies the Department of Education?" | Lobbying firms, clients, compensation, and subjects |
-| "What HPD violations are open in the South Bronx?" | Class A/B/C violations with addresses, dates, and status |
-| "Show me United Way's full profile" | Funding history, audit results, 990 financials, M/WBE status |
-| "What NYC funding sources are open for youth programs?" | Active grants, contracts, and RFPs with deadlines |
-| "Compare conditions in East Harlem vs Park Slope" | Demographics, complaints, violations, schools side by side |
-
-## Data Quality
-
-- **57 verified sources** — NYC, NYS, and Federal public records
-- **127M+ records** indexed and normalized
-- **Updated weekly** from live government APIs
-- **Cross-referenced** — a single query checks multiple databases
-- **Source attribution** — every response cites its sources
-- **Gap detection** — tells you what data is missing, not just what exists
-
-## Who Uses Akil
-
-- **Nonprofit leaders** — Track government funding across all agencies
-- **Grant writers** — Find opportunities, check eligibility, monitor deadlines
-- **Council staff** — District-level intelligence for constituent services
-- **Journalists** — Follow the money, cross-reference political connections
-- **Lobbyists** — Council member profiles, legislation tracking, competitive landscape
-- **Developers** — Build custom civic data tools on our infrastructure
-
-## Pricing
-
-| Tier | Price | Includes |
-|------|-------|---------|
-| **Free** | $0 | Full access to all 92 tools |
-| **Pro** | $79/mo | Real-time alerts, watchlists, exports |
-| **Professional** | $199/mo | Deep analysis mode, MCP API key, custom reports |
-| **Enterprise** | Custom | Custom AI agents, integrations, white-label |
-
-[View full pricing →](https://askakil.ai/pricing)
-
-## Links
-
-- 🌐 **Product:** [askakil.ai](https://askakil.ai)
-- 📖 **Tool Documentation:** [askakil.ai/mcp/docs](https://askakil.ai/mcp/docs)
-- 🏢 **Company:** [akilventures.com](https://akilventures.com)
-- 🔒 **Privacy:** [askakil.ai/privacy](https://askakil.ai/privacy)
-- 📄 **Terms:** [askakil.ai/terms](https://askakil.ai/terms)
-- 𝕏 **X/Twitter:** [@akilNYC](https://x.com/akilNYC)
+- Product: [askakil.ai](https://askakil.ai)
+- MCP overview: [askakil.ai/mcp](https://askakil.ai/mcp)
+- Developer docs: [askakil.ai/mcp/docs](https://askakil.ai/mcp/docs)
+- Company: [akilventures.com](https://akilventures.com)
+- Contact: [hello@akilventures.com](mailto:hello@akilventures.com)
 
 ## About
 
-Built by **Akil Ventures, Inc.** — a Delaware corporation building civic intelligence tools for New York City.
+Akil is built by [Akil Ventures, Inc.](https://akilventures.com), a Delaware
+corporation building civic intelligence infrastructure for AI agents.
 
 ## License
 
-MIT
+MIT. This public repository documents the hosted MCP server and lightweight
+connection metadata. The hosted Akil service runs proprietary infrastructure
+and is not open source.
