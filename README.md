@@ -1,5 +1,9 @@
 # Akil MCP - New York City Edition
 
+[![npm](https://img.shields.io/npm/v/akil-mcp?label=npm)](https://www.npmjs.com/package/akil-mcp)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-askakil.ai%2Fmcp-orange)](https://askakil.ai/mcp)
+
 ### NYC public records for AI agents.
 
 Akil MCP connects Claude, ChatGPT, Codex, and custom agents to a hosted civic
@@ -7,7 +11,8 @@ data layer built around real workflows, reusable identifiers, and source-backed
 public records.
 
 The product is the hosted MCP server. This repository is the public connection
-home for developers and evaluators.
+home for developers, evaluators, and partner teams who want to understand what
+Akil can do before connecting an agent.
 
 ## Connect
 
@@ -26,17 +31,24 @@ Full setup and docs:
 
 - [MCP overview](https://askakil.ai/mcp)
 - [Developer docs](https://askakil.ai/mcp/docs)
+- [Claude setup](docs/connect-claude.md)
+- [ChatGPT setup](docs/connect-chatgpt.md)
+- [Codex setup](docs/connect-codex.md)
+- [Authentication](docs/auth.md)
+- [Structured output](docs/structured-output.md)
 
 ## What agents can do
 
 Akil is organized around civic workflows rather than a single dataset.
 
-- Evaluate a business location: permits, licenses, inspections, location context
-- Research a property or building: ownership, deeds, permits, violations, sales, tax records
-- Follow public money: awards, payments, contracts, agency budgets
-- Understand influence: lobbying, campaign finance, legislation, votes, hearings
-- Check an organization: nonprofit registries, audits, funding history, compliance records
-- Ask about a place: address, BBL, district, neighborhood, radius, polygon, or corridor
+| Workflow | What the assistant can check |
+|----------|------------------------------|
+| Business location | Permits, licenses, inspections, operating context, and location constraints |
+| Property diligence | Ownership, tax-lot identity, deeds, sales, permits, violations, and tax records |
+| Public money | Awards, payments, contracts, agency budgets, and recipient history |
+| Influence and government | Lobbying, campaign finance, legislation, votes, hearings, and officeholder context |
+| Organization checks | Nonprofit registries, audits, funding history, compliance records, and aliases |
+| Spatial questions | Address, BBL, district, neighborhood, radius, polygon, corridor, and time-windowed queries |
 
 ## Why this exists
 
@@ -50,6 +62,23 @@ assistant can actually follow.
 
 Akil responses are designed to keep agents oriented around durable civic
 identifiers:
+
+```mermaid
+flowchart LR
+  Q["User question"] --> A["Anchor"]
+  A --> BBL["BBL / tax lot"]
+  A --> EIN["EIN / organization"]
+  A --> Agency["Agency"]
+  A --> District["District / boundary"]
+  A --> License["License / application"]
+  A --> Time["Time window"]
+  BBL --> R["Source-backed answer"]
+  EIN --> R
+  Agency --> R
+  District --> R
+  License --> R
+  Time --> R
+```
 
 - `BBL` for tax lots, buildings, ownership, permits, sales, tax records, and violations
 - `EIN` for nonprofits, audits, awards, filings, and organization checks
@@ -83,6 +112,14 @@ What changed in this council district over the last year?
 Is this restaurant, liquor, tobacco, cannabis, or sidewalk-cafe location worth checking more closely?
 ```
 
+See the workflow recipes:
+
+- [Business location](examples/business-location.md)
+- [Property diligence](examples/property-diligence.md)
+- [Nonprofit due diligence](examples/nonprofit-due-diligence.md)
+- [Public money](examples/public-money.md)
+- [Spatial query](examples/spatial-query.md)
+
 ## Standards and discovery
 
 For clients, directories, and evaluators that probe machine-readable surfaces:
@@ -94,6 +131,18 @@ For clients, directories, and evaluators that probe machine-readable surfaces:
 - **Tool behavior:** every tool is read-only and non-destructive, declares MCP safety annotations, returns a source-attribution footer, and states plainly when a search is capped or empty
 - **Registry manifest:** [`server.json`](./server.json) in this repository
 
+## What this repository is
+
+This public repository contains:
+
+- connection metadata
+- setup notes
+- workflow examples
+- public-facing security contact information
+
+It does not contain the hosted server implementation, data pipelines, database
+schema, private infrastructure, or internal operating documents.
+
 ## Public surfaces
 
 - Product: [askakil.ai](https://askakil.ai)
@@ -101,6 +150,11 @@ For clients, directories, and evaluators that probe machine-readable surfaces:
 - Developer docs: [askakil.ai/mcp/docs](https://askakil.ai/mcp/docs)
 - Company: [akilventures.com](https://akilventures.com)
 - Contact: [hello@akilventures.com](mailto:hello@akilventures.com)
+
+## Security
+
+Please do not post tokens, API keys, private prompts, or sensitive records in
+GitHub issues. See [SECURITY.md](SECURITY.md) for reporting guidance.
 
 ## About
 

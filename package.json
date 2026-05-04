@@ -26,6 +26,9 @@
   "files": [
     "README.md",
     "LICENSE",
-    "server.json"
+    "SECURITY.md",
+    "server.json",
+    "docs",
+    "examples"
   ]
 }
