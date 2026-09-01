@@ -1,38 +1,18 @@
 {
-  "name": "akil-mcp",
-  "displayName": "Akil MCP - New York City Edition",
-  "description": "NYC public records for AI agents. Hosted MCP access to source-backed civic data organized around addresses, BBLs, organizations, agencies, districts, licenses, and time windows.",
-  "version": "2.5.0",
-  "transport": {
-    "type": "http",
-    "url": "https://mcp.askakil.ai/mcp"
-  },
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.akilventures/akil-mcp",
+  "title": "Akil MCP - New York City Edition",
+  "description": "NYC public records for AI agents. Hosted, source-backed civic data for property, public money, lobbying, land use, licensing, housing, and neighborhood context, organized around durable identifiers.",
+  "version": "2.5.1",
+  "websiteUrl": "https://askakil.ai/mcp",
   "repository": {
     "url": "https://github.com/AkilVentures/akil-mcp",
     "source": "github"
   },
-  "author": {
-    "name": "Akil Ventures, Inc.",
-    "url": "https://akilventures.com"
-  },
-  "links": {
-    "homepage": "https://askakil.ai/mcp",
-    "documentation": "https://askakil.ai/mcp/docs",
-    "pricing": "https://askakil.ai/pricing",
-    "privacy": "https://askakil.ai/privacy"
-  },
-  "categories": ["data-platforms", "government", "civic-data"],
-  "keywords": [
-    "mcp",
-    "model-context-protocol",
-    "nyc",
-    "civic-data",
-    "public-records",
-    "government",
-    "property-records",
-    "campaign-finance",
-    "lobbying",
-    "procurement",
-    "nonprofit"
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.askakil.ai/mcp"
+    }
   ]
 }

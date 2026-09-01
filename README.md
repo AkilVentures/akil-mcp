@@ -83,6 +83,17 @@ What changed in this council district over the last year?
 Is this restaurant, liquor, tobacco, cannabis, or sidewalk-cafe location worth checking more closely?
 ```
 
+## Standards and discovery
+
+For clients, directories, and evaluators that probe machine-readable surfaces:
+
+- **Server Card:** [`https://mcp.askakil.ai/.well-known/mcp/server-card.json`](https://mcp.askakil.ai/.well-known/mcp/server-card.json) (also at `/.well-known/mcp.json`)
+- **OAuth resource metadata:** `https://mcp.askakil.ai/.well-known/oauth-protected-resource` (RFC 9728)
+- **Protocol:** serves current-era MCP clients (protocol revision `2026-07-28`) and 2025-era legacy clients on the same endpoint
+- **Health:** `https://mcp.askakil.ai/health` reports version and live tool count
+- **Tool behavior:** every tool is read-only and non-destructive, declares MCP safety annotations, returns a source-attribution footer, and states plainly when a search is capped or empty
+- **Registry manifest:** [`server.json`](./server.json) in this repository
+
 ## Public surfaces
 
 - Product: [askakil.ai](https://askakil.ai)

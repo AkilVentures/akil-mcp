@@ -1,7 +1,7 @@
 {
   "name": "akil-mcp",
-  "version": "2.5.0",
-  "description": "NYC public records for AI agents. Hosted MCP connection metadata for Akil.",
+  "version": "2.5.1",
+  "description": "NYC public records for AI agents. Connection metadata for the hosted Akil MCP server at mcp.askakil.ai.",
   "mcpName": "io.github.akilventures/akil-mcp",
   "keywords": [
     "mcp",
